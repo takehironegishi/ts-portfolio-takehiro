@@ -1,11 +1,11 @@
 import type { NextPage } from "next";
 import { Header } from "../components/shared/Header";
 
-const Home: NextPage = () => (
+const About: NextPage = () => (
   <>
     <Header />
-    <h1>I am index page</h1>
+    <h1>I am about page</h1>
   </>
 );
 
-export default Home;
+export default About;
