@@ -1,11 +1,10 @@
 import type { NextPage } from "next";
-import { Header } from "../components/shared/Header";
+import { BaseLayout } from "../components/layouts/BaseLayout";
 
 const Cv: NextPage = () => (
-  <>
-    <Header />
+  <BaseLayout>
     <h1>I am cv page</h1>
-  </>
+  </BaseLayout>
 );
 
 export default Cv;
