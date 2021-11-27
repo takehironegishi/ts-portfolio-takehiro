@@ -24,7 +24,7 @@ const Portfolios: NextPage<Props> = ({ posts }) => {
   );
 };
 
-Portfolios.getInitialProps = async () => {
+export const getServerSideProps = async () => {
   let posts = [];
   try {
     const res = await axios.get("https://jsonplaceholder.typicode.com/posts");
@@ -33,7 +33,11 @@ Portfolios.getInitialProps = async () => {
     if (e instanceof Error) console.error(e.message);
   }
 
-  return { posts: posts.slice(0, 10) };
+  return {
+    props: {
+      posts: posts.slice(0, 10),
+    },
+  };
 };
 
 export default Portfolios;
