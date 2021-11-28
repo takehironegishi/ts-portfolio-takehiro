@@ -1,8 +1,14 @@
 import { Header } from "../shared/Header";
 
-export const BaseLayout: React.FC = ({ children }) => (
-  <>
+interface Props {
+  className: string;
+}
+
+export const BaseLayout: React.FC<Props> = ({ children, className }) => (
+  <div className="layout-container">
     <Header />
-    {children}
-  </>
+    <main className={`cover ${className}`}>
+      <div className="wrapper">{children}</div>
+    </main>
+  </div>
 );
