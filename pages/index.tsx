@@ -1,7 +1,10 @@
 import type { NextPage } from "next";
 import Image from "next/image";
 import { Container, Row, Col } from "reactstrap";
+import Typed from "react-typed";
 import { BaseLayout } from "../components/layouts/BaseLayout";
+
+const roles = ["Developer", "Tech Lover", "Team Player", "React.js", "Next.js"];
 
 const Home: NextPage = () => (
   <BaseLayout className="cover">
@@ -44,6 +47,17 @@ const Home: NextPage = () => (
                 through the years!
               </h1>
             </div>
+            <Typed
+              loop
+              typeSpeed={70}
+              backSpeed={70}
+              strings={roles}
+              backDelay={1000}
+              loopCount={0}
+              showCursor
+              className="self-typed"
+              cursorChar="|"
+            />
             <div className="hero-welcome-bio">
               <h1>Let's take a look on my work.</h1>
             </div>

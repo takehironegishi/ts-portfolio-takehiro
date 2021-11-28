@@ -1,13 +1,6 @@
 import Link from "next/link";
 import { useState } from "react";
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-} from "reactstrap";
+import { Collapse, Navbar, NavbarToggler, Nav, NavItem } from "reactstrap";
 
 interface Props {
   href: string;
@@ -34,11 +27,11 @@ export const Header = () => {
         dark
         expand="md"
       >
-        <NavbarBrand>
+        <div className="navbar-brand">
           <Link href="/">
             <a className="port-navbar-brand">Takehiro Negishi</a>
           </Link>
-        </NavbarBrand>
+        </div>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
