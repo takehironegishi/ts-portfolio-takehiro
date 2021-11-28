@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import Link from "next/link";
 import axios from "axios";
 import { BaseLayout } from "../../components/layouts/BaseLayout";
+import { BasePage } from "../../components/BasePage";
 
 interface Props {
   posts: { id: number; title: string }[];
@@ -10,16 +11,18 @@ interface Props {
 const Portfolios: NextPage<Props> = ({ posts }) => {
   return (
     <BaseLayout>
-      <h1>I am portfolios page</h1>
-      <ul>
-        {posts.map((post) => (
-          <li key={post.id}>
-            <Link href={`/portfolios/${post.id}`}>
-              <a>{post.title}</a>
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <BasePage>
+        <h1>I am portfolios page</h1>
+        <ul>
+          {posts.map((post) => (
+            <li key={post.id}>
+              <Link href={`/portfolios/${post.id}`}>
+                <a>{post.title}</a>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </BasePage>
     </BaseLayout>
   );
 };

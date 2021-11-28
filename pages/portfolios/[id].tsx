@@ -1,6 +1,7 @@
 import type { NextPage, GetServerSideProps } from "next";
 import axios from "axios";
 import { BaseLayout } from "../../components/layouts/BaseLayout";
+import { BasePage } from "../../components/BasePage";
 
 interface Props {
   portfolio: { id: number; title: string; body: string };
@@ -9,10 +10,12 @@ interface Props {
 const Portfolio: NextPage<Props> = ({ portfolio }) => {
   return (
     <BaseLayout>
-      <h1>I am Portfolio Page</h1>
-      <h1>{portfolio.title}</h1>
-      <p>BODY: {portfolio.body}</p>
-      <p>ID: {portfolio.id}</p>
+      <BasePage>
+        <h1>I am Portfolio Page</h1>
+        <h1>{portfolio.title}</h1>
+        <p>BODY: {portfolio.body}</p>
+        <p>ID: {portfolio.id}</p>
+      </BasePage>
     </BaseLayout>
   );
 };
