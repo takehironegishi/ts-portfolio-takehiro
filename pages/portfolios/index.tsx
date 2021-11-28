@@ -1,8 +1,8 @@
 import type { NextPage } from "next";
 import Link from "next/link";
 import axios from "axios";
-import { BaseLayout } from "../../components/layouts/BaseLayout";
-import { BasePage } from "../../components/BasePage";
+import { BaseLayout } from "components/layouts/BaseLayout";
+import { BasePage } from "components/BasePage";
 
 interface Props {
   posts: { id: number; title: string }[];

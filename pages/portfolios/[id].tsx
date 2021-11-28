@@ -1,7 +1,7 @@
 import type { NextPage, GetServerSideProps } from "next";
 import axios from "axios";
-import { BaseLayout } from "../../components/layouts/BaseLayout";
-import { BasePage } from "../../components/BasePage";
+import { BaseLayout } from "components/layouts/BaseLayout";
+import { BasePage } from "components/BasePage";
 
 interface Props {
   portfolio: { id: number; title: string; body: string };

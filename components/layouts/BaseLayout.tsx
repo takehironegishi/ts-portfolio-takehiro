@@ -1,4 +1,4 @@
-import { Header } from "../shared/Header";
+import { Header } from "components/shared/Header";
 
 interface Props {
   className?: string;

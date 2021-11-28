@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import Image from "next/image";
 import { Container, Row, Col } from "reactstrap";
 import Typed from "react-typed";
-import { BaseLayout } from "../components/layouts/BaseLayout";
+import { BaseLayout } from "components/layouts/BaseLayout";
 
 const roles = ["Developer", "Tech Lover", "Team Player", "React.js", "Next.js"];
 
