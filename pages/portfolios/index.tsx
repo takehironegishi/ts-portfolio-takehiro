@@ -1,4 +1,5 @@
 import type { NextPage } from "next";
+import { useEffect } from "react";
 import Link from "next/link";
 import axios from "axios";
 import { BaseLayout } from "components/layouts/BaseLayout";
@@ -9,6 +10,14 @@ interface Props {
 }
 
 const Portfolios: NextPage<Props> = ({ posts }) => {
+  useEffect(() => {
+    const getPosts = async () => {
+      const res = await fetch("/api/v1/posts");
+      const data = await res.json();
+    };
+    getPosts();
+  }, []);
+
   return (
     <BaseLayout>
       <BasePage>
