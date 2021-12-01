@@ -9,12 +9,13 @@ interface Props {
 }
 
 const Portfolios: NextPage<Props> = () => {
-  const { posts, error } = useGetPosts();
+  const { posts, error, loading } = useGetPosts();
 
   return (
     <BaseLayout>
       <BasePage>
         <h1>I am portfolios page</h1>
+        {loading && <p>Loading data...</p>}
         {posts && (
           <ul>
             {posts.map((post) => (
