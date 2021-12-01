@@ -1,7 +1,6 @@
 import type { NextPage } from "next";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import axios from "axios";
 import { BaseLayout } from "components/layouts/BaseLayout";
 import { BasePage } from "components/BasePage";
 
@@ -9,11 +8,14 @@ interface Props {
   posts: { id: number; title: string }[];
 }
 
-const Portfolios: NextPage<Props> = ({ posts }) => {
+const Portfolios: NextPage<Props> = () => {
+  const [posts, setPosts] = useState<{ id: number; title: string }[]>([]);
+
   useEffect(() => {
     const getPosts = async () => {
       const res = await fetch("/api/v1/posts");
       const data = await res.json();
+      setPosts(data);
     };
     getPosts();
   }, []);
@@ -34,22 +36,6 @@ const Portfolios: NextPage<Props> = ({ posts }) => {
       </BasePage>
     </BaseLayout>
   );
-};
-
-export const getServerSideProps = async () => {
-  let posts = [];
-  try {
-    const res = await axios.get("https://jsonplaceholder.typicode.com/posts");
-    posts = res.data;
-  } catch (e) {
-    if (e instanceof Error) console.error(e.message);
-  }
-
-  return {
-    props: {
-      posts: posts.slice(0, 10),
-    },
-  };
 };
 
 export default Portfolios;
