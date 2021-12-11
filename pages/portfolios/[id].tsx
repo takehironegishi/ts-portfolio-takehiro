@@ -1,43 +1,39 @@
-import type { NextPage, GetServerSideProps } from "next";
-import axios from "axios";
+import type { NextPage } from "next";
+import { useRouter } from "next/router";
 import { BaseLayout } from "components/layouts/BaseLayout";
 import { BasePage } from "components/BasePage";
+import { useGetData } from "actions";
 
 interface Props {
   portfolio: { id: number; title: string; body: string };
 }
 
-const Portfolio: NextPage<Props> = ({ portfolio }) => {
+const Portfolio: NextPage<Props> = () => {
+  const router = useRouter();
+  const {
+    data: portfolio,
+    error,
+    loading,
+  } = useGetData<{ title: string; body: string; id: number }>(
+    router.query.id ? `/api/v1/posts/${router.query.id}` : null
+  );
+
   return (
     <BaseLayout>
       <BasePage>
-        <h1>I am Portfolio Page</h1>
-        <h1>{portfolio.title}</h1>
-        <p>BODY: {portfolio.body}</p>
-        <p>ID: {portfolio.id}</p>
+        {loading && <p>Loading Data...</p>}
+        {error && <div className="alert alert-danger">{error.message}</div>}
+        {portfolio && (
+          <>
+            <h1>I am Portfolio Page</h1>
+            <h1>{portfolio.title}</h1>
+            <p>BODY: {portfolio.body}</p>
+            <p>ID: {portfolio.id}</p>
+          </>
+        )}
       </BasePage>
     </BaseLayout>
   );
-};
-
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const { id } = ctx.query;
-  let post = {};
-
-  try {
-    const res = await axios.get(
-      `https://jsonplaceholder.typicode.com/posts/${id}`
-    );
-    post = res.data;
-  } catch (e) {
-    if (e instanceof Error) console.error(e.message);
-  }
-
-  return {
-    props: {
-      portfolio: post,
-    },
-  };
 };
 
 export default Portfolio;
