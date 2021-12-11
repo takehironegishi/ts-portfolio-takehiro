@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import Link from "next/link";
-import { useGetData } from "actions";
+import { useGetPosts } from "actions";
 import { BaseLayout } from "components/layouts/BaseLayout";
 import { BasePage } from "components/BasePage";
 
@@ -9,8 +9,7 @@ interface Props {
 }
 
 const Portfolios: NextPage<Props> = () => {
-  const { data, error, loading } =
-    useGetData<{ id: number; title: string }[]>("api/v1/posts");
+  const { data, error, loading } = useGetPosts();
 
   return (
     <BaseLayout>
