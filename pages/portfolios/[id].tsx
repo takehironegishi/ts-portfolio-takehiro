@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import { BaseLayout } from "components/layouts/BaseLayout";
 import { BasePage } from "components/BasePage";
-import { useGetData } from "actions";
+import { useGetPostById } from "actions";
 
 interface Props {
   portfolio: { id: number; title: string; body: string };
@@ -10,13 +10,7 @@ interface Props {
 
 const Portfolio: NextPage<Props> = () => {
   const router = useRouter();
-  const {
-    data: portfolio,
-    error,
-    loading,
-  } = useGetData<{ title: string; body: string; id: number }>(
-    router.query.id ? `/api/v1/posts/${router.query.id}` : null
-  );
+  const { data: portfolio, error, loading } = useGetPostById(router.query.id);
 
   return (
     <BaseLayout>

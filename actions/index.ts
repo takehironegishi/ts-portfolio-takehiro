@@ -17,3 +17,12 @@ export const useGetPosts = () => {
   );
   return { data, error, loading: !data && !error, ...rest };
 };
+
+export const useGetPostById = (id?: string | string[]) => {
+  const { data, error, ...rest } = useSWR<{
+    id: number;
+    title: string;
+    body: string;
+  }>(typeof id === "string" ? `/api/v1/posts/${id}` : null, fetcher);
+  return { data, error, loading: !data && !error, ...rest };
+};
