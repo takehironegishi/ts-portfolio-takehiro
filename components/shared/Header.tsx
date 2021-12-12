@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Collapse, Navbar, NavbarToggler, Nav, NavItem } from "reactstrap";
+import { User } from "types";
 
 interface Props {
   href: string;
@@ -22,11 +23,13 @@ const LoginLink = () => (
 );
 
 const LogoutLink = () => (
-  <span className="nav-link port-navbar-link clickable">Logout</span>
+  <a className="nav-link port-navbar-link" href="/api/v1/logout">
+    Logout
+  </a>
 );
 
 interface HeaderProps {
-  user: any;
+  user: User;
   loading: boolean;
 }
 

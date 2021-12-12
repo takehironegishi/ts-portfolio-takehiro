@@ -1,7 +1,8 @@
 import { Header } from "components/shared/Header";
+import { User } from "types";
 
 interface Props {
-  user: any;
+  user: User;
   loading: boolean;
   className?: string;
 }
