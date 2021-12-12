@@ -2,15 +2,15 @@ import type { NextPage } from "next";
 import { useGetUser } from "actions/user";
 import { BasePage } from "components/BasePage";
 import { BaseLayout } from "components/layouts/BaseLayout";
+import { Redirect } from "components/shared/Redirect";
 
 const Secret: NextPage = () => {
   const { data, loading } = useGetUser();
 
   if (loading) return <p>Loading...</p>;
 
-  if (!data && typeof window !== "undefined") {
-    window.location.assign("/api/v1/login");
-    return null;
+  if (!data) {
+    return <Redirect to="/api/v1/login" />;
   } else {
     return (
       <BaseLayout user={data} loading={loading}>
