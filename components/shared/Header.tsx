@@ -25,7 +25,12 @@ const LogoutLink = () => (
   <span className="nav-link port-navbar-link clickable">Logout</span>
 );
 
-export const Header = () => {
+interface HeaderProps {
+  user: any;
+  loading: boolean;
+}
+
+export const Header: React.FC<HeaderProps> = ({ user, loading }) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 
@@ -62,12 +67,20 @@ export const Header = () => {
             </NavItem>
           </Nav>
           <Nav navbar>
-            <NavItem className="port-navbar-item">
-              <LoginLink />
-            </NavItem>
-            <NavItem className="port-navbar-item">
-              <LogoutLink />
-            </NavItem>
+            {!loading && (
+              <>
+                {user && (
+                  <NavItem className="port-navbar-item">
+                    <LogoutLink />
+                  </NavItem>
+                )}
+                {!user && (
+                  <NavItem className="port-navbar-item">
+                    <LoginLink />
+                  </NavItem>
+                )}
+              </>
+            )}
           </Nav>
         </Collapse>
       </Navbar>

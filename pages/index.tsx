@@ -8,9 +8,9 @@ import { useGetUser } from "actions/user";
 const roles = ["Developer", "Tech Lover", "Team Player", "React.js", "Next.js"];
 
 const Home: NextPage = () => {
-  const { data, error, loading } = useGetUser();
+  const { data, loading } = useGetUser();
   return (
-    <BaseLayout className="cover">
+    <BaseLayout user={data} loading={loading} className="cover">
       <div className="main-section">
         <div className="background-image">
           <Image src="/images/background-index.png" alt="" layout="fill" />
