@@ -1,8 +1,8 @@
 import auth0 from "utils/auth0";
 
-const login = async (req: any, res: any) => {
+const callback = async (req: any, res: any) => {
   try {
-    await auth0.handleLogin(req, res);
+    await auth0.handleCallback(req, res, { redirectTo: "/" });
   } catch (error) {
     if (error instanceof Error) {
       console.error(error.message);
@@ -11,4 +11,4 @@ const login = async (req: any, res: any) => {
   }
 };
 
-export default login;
+export default callback;
