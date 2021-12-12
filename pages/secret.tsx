@@ -3,8 +3,13 @@ import { useGetUser } from "actions/user";
 import { BasePage } from "components/BasePage";
 import { BaseLayout } from "components/layouts/BaseLayout";
 import { Redirect } from "components/shared/Redirect";
+import { withAuth } from "hoc/withAuth";
 
-const Secret: NextPage = () => {
+interface Props {
+  title: string;
+}
+
+const Secret: NextPage<Props> = ({ title }) => {
   const { data, loading } = useGetUser();
 
   if (loading) return <p>Loading...</p>;
@@ -15,11 +20,11 @@ const Secret: NextPage = () => {
     return (
       <BaseLayout user={data} loading={loading}>
         <BasePage>
-          <h1>I am Secret page</h1>
+          <h1>I am Secret page - {title}</h1>
         </BasePage>
       </BaseLayout>
     );
   }
 };
 
-export default Secret;
+export default withAuth(Secret);
