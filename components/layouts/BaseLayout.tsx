@@ -2,8 +2,8 @@ import { Header } from "components/shared/Header";
 import { User } from "types";
 
 interface Props {
-  user: User;
   loading: boolean;
+  user?: User;
   className?: string;
 }
 

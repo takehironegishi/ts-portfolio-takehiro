@@ -29,8 +29,8 @@ const LogoutLink = () => (
 );
 
 interface HeaderProps {
-  user: User;
   loading: boolean;
+  user?: User;
 }
 
 export const Header: React.FC<HeaderProps> = ({ user, loading }) => {
