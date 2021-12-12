@@ -1,30 +1,22 @@
 import type { NextPage } from "next";
-import { useGetUser } from "actions/user";
 import { BasePage } from "components/BasePage";
 import { BaseLayout } from "components/layouts/BaseLayout";
-import { Redirect } from "components/shared/Redirect";
 import { withAuth } from "hoc/withAuth";
+import { User } from "types";
 
 interface Props {
-  title: string;
+  user: User;
+  loading: boolean;
 }
 
-const Secret: NextPage<Props> = ({ title }) => {
-  const { data, loading } = useGetUser();
-
-  if (loading) return <p>Loading...</p>;
-
-  if (!data) {
-    return <Redirect to="/api/v1/login" />;
-  } else {
-    return (
-      <BaseLayout user={data} loading={loading}>
-        <BasePage>
-          <h1>I am Secret page - {title}</h1>
-        </BasePage>
-      </BaseLayout>
-    );
-  }
+const Secret: NextPage<Props> = ({ user, loading }) => {
+  return (
+    <BaseLayout user={user} loading={loading}>
+      <BasePage>
+        <h1>I am Secret Page - Hello {user.name}</h1>
+      </BasePage>
+    </BaseLayout>
+  );
 };
 
-export default withAuth(Secret);
+export default withAuth<Props>(Secret);
