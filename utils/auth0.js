@@ -1,6 +1,6 @@
 import { initAuth0 } from "@auth0/nextjs-auth0";
 
-export default initAuth0({
+const auth0 = initAuth0({
   domain: process.env.AUTH0_DOMAIN,
   clientId: process.env.AUTH0_CLIENT_ID,
   clientSecret: process.env.AUTH0_CLIENT_SECRET,
@@ -12,3 +12,37 @@ export default initAuth0({
     storeAccessToken: true,
   },
 });
+
+export default auth0;
+
+export const authorizeUser = async (req) => {
+  const session = await auth0.getSession(req);
+  if (!session || !session.user) {
+    return {
+      redirect: {
+        destination: "api/v1/login",
+        permanent: false,
+      },
+    };
+  }
+
+  return session.user;
+};
+
+export const withAuth =
+  (getData) =>
+  async ({ req }) => {
+    const session = await auth0.getSession(req);
+    if (!session || !session.user) {
+      return {
+        redirect: {
+          destination: "api/v1/login",
+          permanent: false,
+        },
+      };
+    }
+
+    const data = getData ? await getData() : {};
+
+    return { props: { user: session.user, ...data } };
+  };

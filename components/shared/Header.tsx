@@ -17,12 +17,14 @@ const BsNavLink: React.FC<Props> = ({ href, title }) => {
 };
 
 const LoginLink = () => (
+  // eslint-disable-next-line @next/next/no-html-link-for-pages
   <a className="nav-link port-navbar-link" href="/api/v1/login">
     Login
   </a>
 );
 
 const LogoutLink = () => (
+  // eslint-disable-next-line @next/next/no-html-link-for-pages
   <a className="nav-link port-navbar-link" href="/api/v1/logout">
     Logout
   </a>
@@ -70,6 +72,9 @@ export const Header: React.FC<HeaderProps> = ({ user, loading }) => {
             </NavItem>
             <NavItem className="port-navbar-item">
               <BsNavLink href="/secret" title="Secret" />
+            </NavItem>
+            <NavItem className="port-navbar-item">
+              <BsNavLink href="/secretssr" title="SecretSSR" />
             </NavItem>
           </Nav>
           <Nav navbar>
