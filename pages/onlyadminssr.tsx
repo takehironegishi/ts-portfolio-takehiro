@@ -9,7 +9,7 @@ interface Props {
   title?: string;
 }
 
-const SecretSSR: NextPage<Props> = ({ user, title }) => {
+const OnlyAdminSSR: NextPage<Props> = ({ user, title }) => {
   return (
     <BaseLayout user={user} loading={false}>
       <BasePage>
@@ -32,6 +32,6 @@ export const getServerSideProps: GetServerSideProps = withAuth(async () => {
   const title = await getTitle();
 
   return title;
-})();
+})("admin");
 
-export default SecretSSR;
+export default OnlyAdminSSR;

@@ -79,6 +79,9 @@ export const Header: React.FC<HeaderProps> = ({ user, loading }) => {
             <NavItem className="port-navbar-item">
               <BsNavLink href="/onlyadmin" title="Admin" />
             </NavItem>
+            <NavItem className="port-navbar-item">
+              <BsNavLink href="/onlyadminssr" title="AdminSSR" />
+            </NavItem>
           </Nav>
           <Nav navbar>
             {!loading && (

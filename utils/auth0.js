@@ -39,9 +39,14 @@ export const authorizeUser = async (req) => {
 
 export const withAuth =
   (getData) =>
+  (role) =>
   async ({ req }) => {
     const session = await auth0.getSession(req);
-    if (!session || !session.user) {
+    if (
+      !session ||
+      !session.user ||
+      (role && !isAuthorized(session.user, role))
+    ) {
       return {
         redirect: {
           destination: "api/v1/login",
